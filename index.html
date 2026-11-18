@@ -116,15 +116,18 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 /* DRAWER + MODAL */
 .scrim{position:fixed;inset:0;background:rgba(5,12,8,.6);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;z-index:70}
 .scrim.on{opacity:1;visibility:visible}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--forest);border-left:1px solid var(--lime);z-index:80;transform:translateX(105%);visibility:hidden;transition:transform .6s var(--spring),visibility .6s;padding:calc(1.5rem + env(safe-area-inset-top,0px)) max(1.5rem,env(safe-area-inset-right,0px)) calc(1.5rem + env(safe-area-inset-bottom,0px)) 1.5rem;overflow-y:auto;display:grid;gap:1.1rem;align-content:start}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--forest);border-left:1px solid var(--lime);z-index:80;transform:translateX(105%);visibility:hidden;transition:transform .6s var(--spring),visibility .6s;padding:calc(clamp(.8rem,2vh,1.4rem) + env(safe-area-inset-top,0px)) max(1.4rem,env(safe-area-inset-right,0px)) calc(clamp(.8rem,2vh,1.4rem) + env(safe-area-inset-bottom,0px)) 1.4rem;overflow-y:auto;display:flex;flex-direction:column;gap:clamp(.5rem,1.5vh,1rem)}
 .drawer.on{transform:none;visibility:visible}
 .x{justify-self:end;background:transparent;border:1px solid var(--line);border-radius:50%;width:40px;height:40px;font-size:1.2rem;line-height:1}
-.drawer .big{font-family:var(--display);font-weight:800;font-size:3rem;line-height:1;color:var(--white)}
+.dhead{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex:none}
+.dhead .kicker{margin:0 0 .15rem}
+.drawer>*{flex:none}
+.drawer .big{font-family:var(--display);font-weight:800;font-size:clamp(2rem,6vh,3rem);line-height:1;color:var(--white)}
 .drawer .big small{font-size:.38em;color:var(--lime);letter-spacing:.1em}
-.dunit{display:grid;gap:.5rem}
-.dunit img{width:100%;aspect-ratio:1280/1137;max-height:44vh;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block;background:var(--slate)}
+.drawer>.dunit{flex:1 1 0;min-height:110px;display:flex;flex-direction:column;gap:.4rem}
+.dunit img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block;background:var(--slate)}
 .specs{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
-.specs li{display:flex;justify-content:space-between;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.specs li{display:flex;justify-content:space-between;gap:1rem;padding:clamp(.3rem,1.2vh,.8rem) 0;border-bottom:1px solid var(--line);font-size:.95rem}
 .specs b{font-family:var(--display);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.74rem;color:var(--lime);align-self:center}
 .note{font-size:.82rem;color:var(--dim)}
 .modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:1rem;visibility:hidden;opacity:0;transition:opacity .3s,visibility .3s}
@@ -133,6 +136,21 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .modal.on .sheet{transform:none}
 .sheet h3{font-weight:800;font-size:1.3rem;color:var(--forest)}
 .sheet .note{color:#355245}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.sheet .pill.wa-send{background:#25D366;color:#062b14}
+@media (max-width:640px){
+  .modal{padding:0;place-items:end center}
+  .sheet{width:100%;max-height:92dvh;border-radius:16px 16px 0 0;padding:1rem 1rem calc(1rem + env(safe-area-inset-bottom,0px));transform:translateY(40px)}
+  .sheet h3{font-size:1.1rem}
+  .fld{margin-top:.55rem;gap:.2rem}
+  .fld label{font-size:.6rem}
+  .fld input,.fld select,.fld textarea{font-size:16px;padding:.5rem .6rem}
+  .fld textarea{min-height:54px}
+  .btns{margin-top:.8rem;gap:.5rem;flex-wrap:nowrap}
+  .btns .pill{flex:1;justify-content:center;padding:.7rem .6rem;font-size:.7rem;text-align:center}
+  .out{margin-top:.7rem;padding:.7rem;font-size:.82rem;max-height:20vh;overflow:auto}
+  .wa-fab{width:52px;height:52px}.wa-fab svg{width:29px;height:29px}
+}
 .fld{display:grid;gap:.3rem;margin-top:.9rem}
 .fld label{font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#355245}
 .fld input,.fld select,.fld textarea{font:inherit;color:var(--forest);background:var(--white);border:1px solid #b9c8bf;border-radius:6px;padding:.65rem .75rem;width:100%}
@@ -186,6 +204,31 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .bizcard dd{margin:0;overflow-wrap:anywhere}
 .bizcard .tag{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:.85rem;letter-spacing:.05em}
 .contact .lead{color:var(--dim)}
+.lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:.8rem;margin-top:1.4rem}
+.lcard{display:grid;gap:.35rem;padding:1rem 1.05rem;border:1px solid var(--line);border-radius:12px;background:rgba(9,33,23,.55)}
+.lcard .lbl{font-family:var(--display);font-weight:700;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
+.lcard .lnum{font-family:var(--display);font-weight:800;font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--white);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lact{display:flex;gap:.5rem;margin-top:.35rem}
+.lbtn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.6rem .7rem;border-radius:999px;font-family:var(--display);font-weight:700;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:transform .3s var(--spring),box-shadow .3s,background .3s}
+.lbtn.call{color:var(--mist);box-shadow:inset 0 0 0 1.5px rgba(232,239,234,.35)}
+.lbtn.call:hover{background:rgba(232,239,234,.12)}
+.lbtn.wab{background:#25D366;color:#062b14}
+.lbtn.wab svg{width:17px;height:17px;flex:none}
+.lbtn.wab:hover{transform:translateY(-2px);box-shadow:0 8px 22px -6px rgba(37,211,102,.6)}
+.wa-fab{position:fixed;right:max(1rem,env(safe-area-inset-right,0px));bottom:max(1rem,env(safe-area-inset-bottom,0px));z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 28px -6px rgba(0,0,0,.55);transition:transform .35s var(--spring)}
+.wa-fab svg{width:32px;height:32px}
+.wa-fab:hover{transform:scale(1.08)}
+.wa-fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:waPing 2.6s ease-out infinite}
+@keyframes waPing{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.7);opacity:0}}
+.wa{background:#25D366!important;color:#062b14!important}
+.wa{display:inline-grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;background:#8CE02C;color:#092117;transition:transform .3s var(--spring),box-shadow .3s}
+.wa svg{width:21px;height:21px}
+.wa:hover{transform:scale(1.12);box-shadow:0 0 0 6px rgba(140,224,44,.25)}
+.numrow{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.numrow.alt{margin-top:.5rem;font-size:1rem;color:var(--dim)}
+.numrow.alt a:not(.wa){color:inherit;font-weight:700}
+.fnum{display:flex;align-items:center;gap:.6rem}
+.fnum .wa{width:30px;height:30px}.fnum .wa svg{width:17px;height:17px}
 .line-num{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3.4vw,2.3rem);margin-top:1.4rem;font-variant-numeric:tabular-nums;color:var(--white)}
 
 /* FOOTER */
@@ -357,8 +400,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .sidemenu .pill{justify-self:start}
 /* SPEC ICONS */
 .meters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem}
-.meter{display:grid;justify-items:center;gap:.35rem;text-align:center;padding:1rem .5rem;border:1px solid var(--line);border-radius:8px;background:rgba(20,61,43,.45)}
-.meter svg{width:38px;height:38px;fill:none;stroke:var(--lime);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(140,224,44,.35))}
+.meter{display:grid;justify-items:center;gap:.25rem;text-align:center;padding:clamp(.5rem,1.5vh,1rem) .5rem;border:1px solid var(--line);border-radius:8px;background:rgba(20,61,43,.45)}
+.meter svg{width:clamp(26px,4.6vh,38px);height:clamp(26px,4.6vh,38px);fill:none;stroke:var(--lime);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(140,224,44,.35))}
 .meter .ml{font-family:var(--display);font-weight:700;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 .meter .mv{font-family:var(--display);font-weight:800;font-size:1rem;color:var(--white);font-variant-numeric:tabular-nums}
 /* LOGO SEQUENCE: spinner first, then the ECO wordmark slides in */
@@ -380,6 +423,18 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 @keyframes bolt{0%{opacity:0;transform:scale(.6);filter:drop-shadow(0 0 0 #8CE02C)}12%{opacity:1;transform:scale(1.08);filter:drop-shadow(0 0 14px #8CE02C)}22%{opacity:.55}32%{opacity:1}44%{opacity:.6}56%{opacity:1}100%{opacity:1;transform:none;filter:drop-shadow(0 0 6px rgba(140,224,44,.6))}}
 @keyframes wmIn{from{clip-path:inset(0 100% 0 0);transform:translateX(-6%)}to{clip-path:inset(0 0 0 0);transform:none}}
 @keyframes tagIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+/* NAV LOGO-REVEAL TRANSITION */
+#intro.re{animation:none;cursor:default;transform:translateY(-110%)}
+#intro.re.in{animation:reDown .5s cubic-bezier(.7,0,.2,1) forwards}
+#intro.re.out{animation:reUp .8s var(--spring) forwards;transform:none}
+@keyframes reDown{from{transform:translateY(-110%)}to{transform:none}}
+@keyframes reUp{from{transform:none}to{transform:translateY(-110%);visibility:hidden}}
+#intro.re .ic{animation:none;left:36.28%}
+#intro.re .ic-base{animation:icIn .35s var(--spring) .3s both}
+#intro.re .ic-bolt{animation:bolt .7s linear .35s both}
+#intro.re .spin{animation:spin .65s linear .35s both}
+#intro.re .spin2{animation:spin .65s linear .35s both,arc2 .2s ease .75s both}
+#intro.re .lk-wm,#intro.re .lk-tag{display:none}
 /* REVEAL */
 .rv{opacity:.25;transform:translate(34px,34px);transition:transform .9s var(--spring),opacity .7s}
 .rv.in{opacity:1;transform:none}
@@ -636,24 +691,25 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     <div class="contact">
       <div>
         <p class="kicker">Contact</p>
-        <h2 style="margin-top:.6rem">Talk to the Managing Director</h2>
+        <h2 style="margin-top:.6rem">Talk to the CEO / Managing Director</h2>
         <p class="lead">Tell us your site and load. We reply with the right capacity and a price.</p>
-        <div class="line-num" id="phoneTxt">+234 701 762 1939</div>
+        <div class="lines"><div class="lcard"><span class="lbl">Direct line</span><b class="lnum" id="phoneTxt">+234 701 762 1939</b><div class="lact"><a class="lbtn call" href="tel:+2347017621939">Call</a><a class="lbtn wab" href="https://wa.me/2347017621939?text=Hello%20ECO%2C%20I%27d%20like%20a%20quote%20for%20a%20generator." target="_blank" rel="noopener" aria-label="Chat on WhatsApp: +234 701 762 1939"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 004.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.29z"/></svg><span>WhatsApp</span></a></div></div><div class="lcard"><span class="lbl">Alternative line</span><b class="lnum">+234 806 060 4107</b><div class="lact"><a class="lbtn call" href="tel:+2348060604107">Call</a><a class="lbtn wab" href="https://wa.me/2348060604107?text=Hello%20ECO%2C%20I%27d%20like%20a%20quote%20for%20a%20generator." target="_blank" rel="noopener" aria-label="Chat on WhatsApp: +234 806 060 4107"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 004.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.29z"/></svg><span>WhatsApp</span></a></div></div></div>
         <div class="cta-row">
           <button class="pill magnetic" type="button" data-quote>Send an enquiry</button>
-          <a class="pill ghost" href="tel:+2347017621939">Call direct line</a>
         </div>
       </div>
       <div class="biz rv">
         <div class="bizcard" id="bizcard">
           <div class="top">
             <div class="badge"><img src="data:image/png;base64,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" alt="" width="46" height="46"></div>
-            <div class="nm"><b>Engr. Ayideji Paul</b><span>Managing Director</span></div>
+            <div class="nm"><b>Engr. Ayideji Paul</b><span>CEO / Managing Director</span></div>
           </div>
           <div class="body">
             <dl>
               <dt>Address</dt><dd>Akindele Street, Asa-Dam Rd, Oko Erin 240281, Kwara, Nigeria</dd>
+              <dt>Alt. address</dt><dd>No. 21 Friesland Close, near St Joseph&rsquo;s Office, Vom, Plateau State (Jos)</dd>
               <dt>Direct line</dt><dd>+234 701 762 1939</dd>
+              <dt>Alt. line</dt><dd>+234 806 060 4107</dd>
             </dl>
             <div>
               <div class="tag">Fueless | Noiseless Generators</div>
@@ -716,9 +772,11 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
       <div>
         <h3>Contact</h3>
         <address>
-          <span><b>Managing Director</b>Engr. Ayideji Paul</span>
-          <span><b>Direct line</b><a class="fphone" href="tel:+2347017621939">+234 701 762 1939</a></span>
+          <span><b>CEO / Managing Director</b>Engr. Ayideji Paul</span>
+          <span><b>Direct line</b><span class="fnum"><a class="fphone" href="tel:+2347017621939">+234 701 762 1939</a><a class="wa" href="https://wa.me/2347017621939?text=Hello%20ECO%2C%20I%27d%20like%20a%20quote%20for%20a%20generator." target="_blank" rel="noopener" aria-label="Chat on WhatsApp: +234 701 762 1939"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 004.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.29z"/></svg></a></span></span>
+          <span><b>Alt. line</b><span class="fnum"><a class="fphone" href="tel:+2348060604107">+234 806 060 4107</a><a class="wa" href="https://wa.me/2348060604107?text=Hello%20ECO%2C%20I%27d%20like%20a%20quote%20for%20a%20generator." target="_blank" rel="noopener" aria-label="Chat on WhatsApp: +234 806 060 4107"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 004.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.29z"/></svg></a></span></span>
           <span><b>Address</b>Akindele Street, Asa-Dam Rd, Oko Erin 240281, Kwara, Nigeria</span>
+          <span><b>Alt. address</b>No. 21 Friesland Close, near St Joseph&rsquo;s Office, Vom, Plateau State (Jos)</span>
           <span><b>Handle</b>@EcoGeneratorsNG</span>
         </address>
       </div>
@@ -751,11 +809,12 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   <button class="pill" type="button" data-quote>Request Quote</button>
 </aside>
 
+<a class="wa-fab" href="https://wa.me/2347017621939?text=Hello%20ECO%2C%20I%27d%20like%20a%20quote%20for%20a%20generator." target="_blank" rel="noopener" aria-label="Chat with ECO on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 004.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24s-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.29z"/></svg></a>
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dK" aria-hidden="true">
-  <button class="x" type="button" id="dClose" aria-label="Close specifications">&times;</button>
-  <p class="kicker" id="dC">Residential</p>
-  <div class="big" id="dK">6<small>kVA</small></div>
+  <div class="dhead"><div><p class="kicker" id="dC">Residential</p>
+  <div class="big" id="dK">6<small>kVA</small></div></div>
+  <button class="x" type="button" id="dClose" aria-label="Close specifications">&times;</button></div>
   <div class="dunit"><img id="dImg" alt="" width="640" height="569"><p class="note" id="dCap"></p></div>
   <div class="meters" id="meters">
     <div class="meter" data-m="cap"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 34a17 17 0 1 1 32 0"/><path d="M24 31l8-10"/><circle cx="24" cy="31" r="2.4"/><path d="M12 25h3M33 25h3M24 14v3"/></svg><span class="ml">Capacity</span><b class="mv">6 kVA</b></div>
@@ -775,20 +834,21 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" aria-hidden="true">
   <div class="sheet">
     <h3 id="mTitle">Request a quote</h3>
-    <p class="note" style="margin-top:.4rem">Fill this in and copy the message. Nothing is sent from this page: send it by WhatsApp, SMS, or call +234 701 762 1939.</p>
+    <p class="note" style="margin-top:.3rem">Fill this in, then send it to us on WhatsApp.</p>
     <form id="qForm" novalidate>
-      <div class="fld"><label for="qName">Your name</label><input id="qName" autocomplete="name"></div>
-      <div class="fld"><label for="qPhone">Phone number</label><input id="qPhone" inputmode="tel" autocomplete="tel"></div>
+      <div class="row2"><div class="fld"><label for="qName">Your name</label><input id="qName" autocomplete="name"></div>
+      <div class="fld"><label for="qPhone">Phone number</label><input id="qPhone" inputmode="tel" autocomplete="tel"></div></div>
       <div class="fld"><label for="qSize">Capacity</label><select id="qSize"></select></div>
       <div class="fld"><label for="qMsg">Site and notes</label><textarea id="qMsg" placeholder="e.g. 3-bedroom home in Ilorin, running AC and freezers"></textarea></div>
       <div class="btns">
-        <button class="pill" type="submit">Prepare my message</button>
+        <button class="pill" type="submit">Prepare message</button>
         <button class="pill ghost" type="button" id="qClose">Close</button>
       </div>
     </form>
     <div class="out" id="qOut" hidden></div>
     <div class="btns" id="qBtns" hidden>
-      <button class="pill" type="button" id="qCopy">Copy message</button>
+      <a class="pill wa-send" id="qWa" href="#" target="_blank" rel="noopener">Send on WhatsApp</a>
+      <button class="pill ghost" type="button" id="qCopy">Copy</button>
       <span class="note" id="qState" role="status"></span>
     </div>
   </div>
@@ -917,7 +977,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     var n=$('#qName').value.trim(), p=$('#qPhone').value.trim(), m=$('#qMsg').value.trim();
     var txt='Hello ECO New Innovation Tech, I would like a quote for a '+qSize.value+' generator.'+
       (n?'\nName: '+n:'')+(p?'\nPhone: '+p:'')+(m?'\nSite and notes: '+m:'');
-    var out=$('#qOut'); out.textContent=txt; out.hidden=false; $('#qBtns').hidden=false;
+    var out=$('#qOut'); out.textContent=txt; out.hidden=false; $('#qBtns').hidden=false; $('#qWa').href='https://wa.me/2347017621939?text='+encodeURIComponent(txt);
   });
   $('#qCopy').addEventListener('click',function(){
     var out=$('#qOut'), st=$('#qState');
@@ -939,7 +999,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
 
   /* logo reveal: removed once it has lifted; click skips */
-  var intro=$('#intro');
+  var intro=$('#intro'), introTpl=intro?intro.cloneNode(true):null;
   if(intro){
     if(reduce){intro.remove()}
     else{
@@ -1177,7 +1237,18 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   $$('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){
     var t=$(a.getAttribute('href')); if(!t) return; e.preventDefault();
     setMenu(false);
-    if(lenis) lenis.scrollTo(t,{offset:-10,duration:1.4}); else t.scrollIntoView({behavior:reduce?'auto':'smooth'});
+    if(a.hasAttribute('data-scroll')||reduce||!introTpl||document.getElementById('intro')){
+      if(lenis) lenis.scrollTo(t,{offset:-10,duration:1.4}); else t.scrollIntoView({behavior:reduce?'auto':'smooth'});
+      return;
+    }
+    /* menu tap: replay the logo reveal, jump while it covers the page, then lift */
+    var cv=introTpl.cloneNode(true); cv.className='re'; cv.setAttribute('aria-hidden','true');
+    document.body.appendChild(cv); void cv.offsetWidth; cv.classList.add('in');
+    setTimeout(function(){
+      var y=Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-10);
+      if(lenis) lenis.scrollTo(y,{immediate:true,force:true}); else window.scrollTo({top:y,behavior:'instant'});
+    },720);
+    setTimeout(function(){cv.className='re out';cv.addEventListener('animationend',function(){cv.remove()})},1500);
   })});
 
   /* angled pop-up reveals */
