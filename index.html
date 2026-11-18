@@ -1094,6 +1094,26 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
       if(e.key==='ArrowLeft'){e.preventDefault();revTrack.scrollBy({left:-rstep(),behavior:'smooth'})}
     });
 
+    /* gentle auto-swipe: every 5s, pauses while you hover, touch, focus or view a photo */
+    var rTimer=null, rHold=false, rSeen=false, rResume=null;
+    function rAdvance(){
+      if(rHold||!rSeen||document.hidden||(lb&&lb.classList.contains('on')))return;
+      var max=revTrack.scrollWidth-revTrack.clientWidth;
+      if(revTrack.scrollLeft>=max-4)revTrack.scrollTo({left:0,behavior:'smooth'});
+      else revTrack.scrollBy({left:rstep(),behavior:'smooth'});
+    }
+    function rRestart(){clearInterval(rTimer);if(!reduce)rTimer=setInterval(rAdvance,5000)}
+    function rPause(){rHold=true;clearTimeout(rResume)}
+    function rLater(ms){clearTimeout(rResume);rResume=setTimeout(function(){rHold=false;rRestart()},ms||1200)}
+    [revTrack,rprev,rnext].forEach(function(el){
+      el.addEventListener('mouseenter',rPause); el.addEventListener('mouseleave',function(){rLater(800)});
+      el.addEventListener('focusin',rPause); el.addEventListener('focusout',function(){rLater(800)});
+      el.addEventListener('touchstart',rPause,{passive:true}); el.addEventListener('touchend',function(){rLater(6000)},{passive:true});
+      el.addEventListener('click',rRestart);
+    });
+    if('IntersectionObserver' in window){new IntersectionObserver(function(es){rSeen=es[0].isIntersecting}).observe($('#reviews'))}else{rSeen=true}
+    rRestart();
+
     /* lightbox */
     var lb=$('#lb'), lbImg=$('#lbImg'), lbCap=$('#lbCap'), lbFrom=null;
     function openLb(r,from){
