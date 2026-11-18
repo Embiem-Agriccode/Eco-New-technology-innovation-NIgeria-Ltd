@@ -266,6 +266,57 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .xv-pin.static{height:auto}
 .xv-pin.static .xv-stick{position:static}
 @media (max-width:900px){.xv-list{grid-template-columns:minmax(0,1fr)}.xv-pin{height:260vh}}
+/* CUSTOMER REVIEWS */
+.s-rev{background:var(--mist);color:var(--forest);z-index:5}
+.s-rev h2{color:var(--forest)}
+.s-rev .lead{color:#355245}
+.rev-top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1rem 2rem}
+.rev-nav{display:flex;gap:.6rem;margin-bottom:2rem}
+.rev-nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--slate);background:#092117;color:#8CE02C;display:grid;place-items:center;transition:background .25s,color .25s,box-shadow .3s,opacity .25s}
+.rev-nav button:hover:not(:disabled){background:#8CE02C;color:#092117;box-shadow:0 0 0 6px rgba(140,224,44,.22)}
+.rev-nav button:disabled{opacity:.35;cursor:default}
+.rev-track{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:.9rem .5rem 1.8rem;margin-inline:-.5rem;scrollbar-width:none;overscroll-behavior-x:contain}
+.rev-track::-webkit-scrollbar{display:none}
+.rev-track:focus-visible{outline-offset:-2px;border-radius:12px}
+.rev-card{flex:0 0 calc((100% - 2.2rem) / 3);scroll-snap-align:start;position:relative;display:flex;flex-direction:column;gap:1.05rem;background:#092117;border:1px solid #143D2B;border-radius:14px;padding:1.5rem;color:#E8EFEA;overflow:hidden;transition:transform .45s var(--spring),border-color .3s,box-shadow .4s}
+.rev-card::before{content:"";position:absolute;inset:auto -30% -55% auto;width:70%;aspect-ratio:1;background:radial-gradient(closest-side,rgba(140,224,44,.22),transparent);opacity:0;transition:opacity .4s;pointer-events:none}
+.rev-card:hover{transform:translateY(-6px);border-color:rgba(140,224,44,.7);box-shadow:0 0 0 1px rgba(140,224,44,.3),0 24px 60px -14px rgba(140,224,44,.3)}
+.rev-card:hover::before{opacity:1}
+.rev-qm{position:absolute;top:1.1rem;right:1.2rem;width:38px;height:38px;color:#8CE02C;opacity:.16}
+.rev-who{display:flex;align-items:center;gap:.85rem;padding-right:2.6rem}
+.rev-av{flex:none;width:50px;height:50px;border-radius:50%;background:#143D2B;border:2px solid #8CE02C;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:.04em;color:#8CE02C}
+.rev-av svg{width:24px;height:24px}
+.rev-name{font-family:var(--display);font-weight:700;font-size:1.02rem;color:#fff;letter-spacing:.01em;line-height:1.2}
+.rev-role{font-size:.78rem;color:rgba(232,239,234,.62);margin-top:.15rem}
+.rev-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem}
+.rev-stars{display:flex;gap:.18rem;color:#8CE02C}
+.rev-stars svg{width:18px;height:18px;filter:drop-shadow(0 0 6px rgba(140,224,44,.45))}
+.rev-badge{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--display);font-weight:700;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:#8CE02C;border:1px solid rgba(140,224,44,.4);border-radius:999px;padding:.28rem .6rem}
+.rev-badge svg{width:12px;height:12px}
+.rev-q{margin:0;flex:1;font-style:italic;font-size:1rem;line-height:1.7;color:#E8EFEA}
+.rev-proof{display:flex;align-items:center;gap:.8rem;width:100%;margin-top:auto;padding:.5rem;background:rgba(20,61,43,.65);border:1px solid #143D2B;border-radius:10px;text-align:left;color:#E8EFEA;transition:border-color .3s,background .3s}
+.rev-proof:hover{border-color:#8CE02C;background:rgba(20,61,43,.95)}
+.rev-proof .th{position:relative;flex:none;width:72px;height:54px;border-radius:7px;overflow:hidden;background:#143D2B}
+.rev-proof .th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--spring)}
+.rev-proof:hover .th img{transform:scale(1.12)}
+.rev-proof .th svg{position:absolute;right:4px;bottom:4px;width:20px;height:20px;padding:3px;border-radius:50%;background:#092117;color:#8CE02C}
+.rev-proof b{display:block;font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#8CE02C}
+.rev-proof span{display:block;font-size:.78rem;color:rgba(232,239,234,.7);margin-top:.15rem}
+.rev-prog{height:4px;border-radius:2px;background:rgba(9,33,23,.14);overflow:hidden}
+.rev-prog i{display:block;height:100%;width:30%;border-radius:2px;background:#092117;transition:margin-left .25s,width .25s}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:1rem;visibility:hidden;opacity:0;transition:opacity .35s,visibility .35s}
+.lb.on{visibility:visible;opacity:1}
+.lb-back{position:absolute;inset:0;background:rgba(5,18,12,.88);backdrop-filter:blur(8px)}
+.lb-fig{position:relative;margin:0;max-width:min(980px,100%);max-height:100%;display:grid;gap:.8rem;transform:translateY(24px) scale(.96);transition:transform .5s var(--spring)}
+.lb.on .lb-fig{transform:none}
+.lb-fig img{max-width:100%;max-height:calc(100vh - 8rem);object-fit:contain;border-radius:12px;border:1px solid #143D2B;box-shadow:0 0 0 1px rgba(140,224,44,.3),0 30px 90px rgba(0,0,0,.6);background:#092117;justify-self:center}
+.lb-fig figcaption{text-align:center;font-size:.9rem;color:#E8EFEA}
+.lb-x{position:absolute;top:-14px;right:-6px;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid #8CE02C;background:#092117;color:#8CE02C;display:grid;place-items:center;transition:background .25s,color .25s}
+.lb-x:hover{background:#8CE02C;color:#092117}
+@media (max-width:1000px){.rev-card{flex-basis:calc((100% - 1.1rem) / 2)}}
+@media (max-width:640px){.rev-card{flex-basis:88%}.rev-nav{display:none}.lb-x{top:-8px;right:4px}}
+@media (prefers-reduced-motion:reduce){.rev-track{scroll-behavior:auto}.rev-card,.lb-fig{transition:none}}
 /* FACTS + PROMO */
 .s-how{background:var(--forest);z-index:4}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
@@ -378,7 +429,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
       <li><a href="#generators">Generators</a></li>
       <li><a href="#price-matrix">Price Matrix</a></li>
       <li><a href="#operations">Nigeria Operations</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+<li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-right">
       <button class="pill magnetic" type="button" data-quote>Request Quote</button>
@@ -550,6 +602,33 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   </div>
 </section>
 
+<section class="slant s-rev" id="reviews" aria-labelledby="revTitle">
+  <div class="wrap">
+    <div class="rev-top">
+      <div class="head rev-head">
+        <p class="kicker">Customer reviews</p>
+        <h2 id="revTitle">What our customers say</h2>
+        <p class="lead">Feedback from homes, factories and offices running fueless, noiseless ECO power.</p>
+      </div>
+      <div class="rev-nav" aria-label="Browse reviews">
+        <button type="button" id="revPrev" aria-label="Previous reviews"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" id="revNext" aria-label="Next reviews"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="rev-track" id="revTrack" role="region" aria-roledescription="carousel" aria-label="Customer reviews" tabindex="0"></div>
+    <div class="rev-prog" aria-hidden="true"><i id="revBar"></i></div>
+  </div>
+</section>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Installation photo" aria-hidden="true">
+  <div class="lb-back" data-close></div>
+  <figure class="lb-fig">
+    <button class="lb-x" type="button" data-close aria-label="Close photo"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+</div>
+
 <section class="slant s-contact" id="contact">
   <div class="wrap">
     <div class="contact">
@@ -617,7 +696,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
           <li><a href="#price-matrix">Price Matrix</a></li>
           <li><a href="#how-it-works">How it works</a></li>
           <li><a href="#operations">Nigeria Operations</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+<li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
 
@@ -663,7 +743,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     <li><a href="#generators">Generators</a></li>
     <li><a href="#price-matrix">Price Matrix</a></li>
     <li><a href="#operations">Nigeria Operations</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+<li><a href="#contact">Contact</a></li>
   </ul>
   <button class="pill" type="button" data-quote>Request Quote</button>
 </aside>
@@ -965,6 +1046,85 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     }
     if(reduce){xpin.classList.add('static');xRender(1)}
     else{window.addEventListener('scroll',xScrub,{passive:true});window.addEventListener('resize',xScrub);xScrub()}
+  }
+
+  /* CUSTOMER REVIEWS
+     To add an installation photo to a review, put the image file in the site folder
+     and give that review:  proof:{src:'images/name.jpg', caption:'Installed unit, Ilorin'}  */
+  var REVIEWS=[
+    {name:'Samson Olivia',role:'Customer',verified:true,text:'We have receive the one my husband ordered Its working well thanks, this is wonderful'},
+    {name:'Dele Morakinyo',role:'Customer',verified:true,text:'Your engineer’s have installed the new Fueless generator i ordered for, it is servicing me very well, I really like the generator.'},
+    {name:'Executive client',role:'Corporate customer',exec:true,verified:true,text:'What a wonderful generator to have, I got the one i order for and it has been delivered / installed for me and it is working very very well, it doesn’t make noise! I highly recommend this Fuelless Noisless Generator everyone.'},
+    {name:'Paul Okoro',role:'Customer',verified:true,text:'I have been using this generator for a year now and it have been working perfectly. those product is really efficient.'},
+    {name:'Zubair Idris',role:'Factory customer',verified:true,text:'Very great technology i have been using my own in the factory for more than seven months now and it has been working well, nice technology'},
+    {name:'Executive client',role:'Corporate customer',exec:true,verified:true,text:'Incredible company! I was hesitant at first, but after talking to the Engr and understanding the process, everything turned out to be very easy. Now I and my family are enjoying electricity effortlessly, I highly recommend it!'},
+    {name:'Obafemi Jude',role:'Customer',verified:true,text:'Since last year I’ve been using this Generator and it has really saved me a lot of stress now that petrol is expensive'}
+  ];
+  var STAR='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.9-4.8 4.6 1.2 6.6L12 17.5 6.1 20.7l1.2-6.6L2.5 9.5l6.6-.9z"/></svg>';
+  var CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  var QUOTE='<svg class="rev-qm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 13c0-4.4 2.4-7.4 6.5-8.5l.8 1.7C9 7 8.1 8.5 8 10.2c2 .1 3.3 1.5 3.3 3.5 0 2.1-1.6 3.6-3.7 3.6C5.4 17.3 4 15.7 4 13zm9 0c0-4.4 2.4-7.4 6.5-8.5l.8 1.7C18 7 17.1 8.5 17 10.2c2 .1 3.3 1.5 3.3 3.5 0 2.1-1.6 3.6-3.7 3.6-2.2 0-3.6-1.6-3.6-4.3z"/></svg>';
+  var BRIEF='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2M3 13h18"/></svg>';
+  var ZOOM='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.2-4.2M11 8.5v5M8.5 11h5"/></svg>';
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function initials(n){return n.split(/\s+/).map(function(w){return w.charAt(0)}).slice(0,2).join('').toUpperCase()}
+  var revTrack=$('#revTrack');
+  if(revTrack){
+    revTrack.innerHTML=REVIEWS.map(function(r,i){
+      var stars='';for(var k=0;k<(r.stars||5);k++)stars+=STAR;
+      var proof=r.proof?'<button class="rev-proof" type="button" data-proof="'+i+'" aria-label="Open installation photo for '+esc(r.name)+'"><span class="th"><img src="'+esc(r.proof.src)+'" alt="" loading="lazy">'+ZOOM+'</span><span><b>Installation proof</b><span>'+esc(r.proof.caption||'Tap to view the delivered unit')+'</span></span></button>':'';
+      return '<article class="rev-card" aria-label="Review by '+esc(r.name)+'">'+QUOTE+
+        '<div class="rev-who"><div class="rev-av">'+(r.exec?BRIEF:esc(initials(r.name)))+'</div><div><div class="rev-name">'+esc(r.name)+'</div><div class="rev-role">'+esc(r.role||'')+'</div></div></div>'+
+        '<div class="rev-meta"><div class="rev-stars" role="img" aria-label="'+(r.stars||5)+' out of 5 stars">'+stars+'</div>'+(r.verified?'<span class="rev-badge">'+CHECK+'Verified customer</span>':'')+'</div>'+
+        '<blockquote class="rev-q">“'+esc(r.text)+'”</blockquote>'+proof+'</article>';
+    }).join('');
+
+    var rcards=$$('.rev-card',revTrack), rprev=$('#revPrev'), rnext=$('#revNext'), rbar=$('#revBar');
+    function rstep(){var c=rcards[0];return c?c.getBoundingClientRect().width+(parseFloat(getComputedStyle(revTrack).columnGap)||16):300}
+    function rsync(){
+      var max=revTrack.scrollWidth-revTrack.clientWidth, x=revTrack.scrollLeft;
+      rprev.disabled=x<4; rnext.disabled=x>max-4;
+      var w=Math.max(12,revTrack.clientWidth/revTrack.scrollWidth*100);
+      rbar.style.width=w+'%'; rbar.style.marginLeft=(max>0?(x/max)*(100-w):0)+'%';
+    }
+    rprev.addEventListener('click',function(){revTrack.scrollBy({left:-rstep(),behavior:'smooth'})});
+    rnext.addEventListener('click',function(){revTrack.scrollBy({left:rstep(),behavior:'smooth'})});
+    revTrack.addEventListener('scroll',rsync,{passive:true}); window.addEventListener('resize',rsync); rsync();
+    revTrack.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'){e.preventDefault();revTrack.scrollBy({left:rstep(),behavior:'smooth'})}
+      if(e.key==='ArrowLeft'){e.preventDefault();revTrack.scrollBy({left:-rstep(),behavior:'smooth'})}
+    });
+
+    /* lightbox */
+    var lb=$('#lb'), lbImg=$('#lbImg'), lbCap=$('#lbCap'), lbFrom=null;
+    function openLb(r,from){
+      lbFrom=from; lbImg.src=r.proof.src; lbImg.alt=r.proof.alt||('Installed ECO generator, '+r.name);
+      lbCap.textContent=(r.proof.caption?r.proof.caption+' • ':'')+r.name;
+      lb.classList.add('on'); lb.setAttribute('aria-hidden','false'); $('.lb-x',lb).focus();
+    }
+    function closeLb(){lb.classList.remove('on');lb.setAttribute('aria-hidden','true');if(lbFrom)lbFrom.focus()}
+    revTrack.addEventListener('click',function(e){
+      var b=e.target.closest('[data-proof]'); if(b) openLb(REVIEWS[+b.getAttribute('data-proof')],b);
+    });
+    lb.addEventListener('click',function(e){if(e.target.closest('[data-close]'))closeLb()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('on'))closeLb()});
+
+    /* staggered fade-up when the section scrolls into view (GSAP, with a CSS fallback) */
+    var revItems=$$('.rev-head > *').concat(rcards,$$('.rev-nav')), revSec=$('#reviews');
+    if('IntersectionObserver' in window && !reduce){
+      if(window.gsap){
+        gsap.set(revItems,{opacity:0,y:44});
+        new IntersectionObserver(function(es,o){
+          if(!es[0].isIntersecting)return; o.disconnect();
+          gsap.to(revItems,{opacity:1,y:0,duration:.95,ease:'power3.out',stagger:.09,clearProps:'transform,opacity'});
+        },{threshold:.18}).observe(revSec);
+      }else{
+        revItems.forEach(function(el,i){el.style.opacity=0;el.style.transform='translateY(44px)';el.style.transition='opacity .8s var(--spring) '+(i*.09)+'s,transform .9s var(--spring) '+(i*.09)+'s'});
+        new IntersectionObserver(function(es,o){
+          if(!es[0].isIntersecting)return; o.disconnect();
+          revItems.forEach(function(el){el.style.opacity=1;el.style.transform='none'});
+        },{threshold:.18}).observe(revSec);
+      }
+    }
   }
 
   /* GSAP intro + Lenis smooth scroll (both optional) */
