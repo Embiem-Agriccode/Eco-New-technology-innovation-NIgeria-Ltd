@@ -389,13 +389,8 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 /* LOGO REVEAL + SIDE MENU */
 .wmimg{height:30px;width:auto;display:block}
 .lkimg{height:84px;width:auto;display:block}
-@property --r{syntax:'<length>';inherits:false;initial-value:-8px}
-#intro{--cx:50%;--cy:38%;position:fixed;inset:0 0 -6vw 0;padding-bottom:6vw;z-index:200;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);
-  background:radial-gradient(circle at var(--cx) var(--cy),transparent var(--r),#8CE02C calc(var(--r) + .5px),#8CE02C calc(var(--r) + 3px),#08201a calc(var(--r) + 7px));
-  -webkit-mask-image:radial-gradient(circle at var(--cx) var(--cy),transparent var(--r),#000 calc(var(--r) + .5px));mask-image:radial-gradient(circle at var(--cx) var(--cy),transparent var(--r),#000 calc(var(--r) + .5px));
-  animation:introOut 1.9s linear 3s forwards;cursor:pointer}
-/* circle open: logo pulls into the lens, then the page opens outward from it */
-@keyframes introOut{0%,38%{--r:-8px;animation-timing-function:cubic-bezier(.4,0,.3,1)}99%{--r:90vmax;visibility:visible}100%{--r:90vmax;visibility:hidden}}
+#intro{position:fixed;inset:0;z-index:200;background:#08201a;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% calc(100% - 6vw),0 100%);animation:introOut .9s var(--spring) 3s forwards;cursor:pointer}
+@keyframes introOut{to{transform:translateY(-110%);visibility:hidden}}
 @keyframes introSkip{to{opacity:0;visibility:hidden}}
 #intro.skip{animation:introSkip .35s ease forwards}
 .sidemenu{position:fixed;top:0;right:0;bottom:0;width:min(320px,84vw);background:var(--forest);border-left:1px solid var(--lime);z-index:80;transform:translateX(105%);visibility:hidden;transition:transform .6s var(--spring),visibility .6s;padding:calc(1.2rem + env(safe-area-inset-top,0px)) max(1.5rem,env(safe-area-inset-right,0px)) calc(1.5rem + env(safe-area-inset-bottom,0px)) 1.5rem;display:grid;gap:1.4rem;align-content:start;overflow-y:auto}
@@ -417,18 +412,15 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .lk{position:relative;width:min(760px,90vw);aspect-ratio:940/430}
 .lk>*,.ic>*{position:absolute}
 .lk img{display:block}
-.ic{z-index:2;left:1.064%;top:2.326%;width:27.447%;height:61.86%;animation:icSlide 1.1s cubic-bezier(.45,.05,.2,1) 1.2s both,icBack .65s cubic-bezier(.6,0,.3,1) 3s forwards}
+.ic{z-index:2;left:1.064%;top:2.326%;width:27.447%;height:61.86%;animation:icSlide 1.1s cubic-bezier(.45,.05,.2,1) 1.2s both}
 .ic img,.ic svg{inset:0;width:100%;height:100%;overflow:visible}
 .ic-base{animation:icIn .5s var(--spring) .05s both}
 .ic-bolt{animation:bolt 1.1s linear .15s both}
 .spin{transform-box:view-box;transform-origin:50% 50%;animation:spin 1.05s linear .15s both}
 .spin2{animation:spin 1.05s linear .15s both,arc2 .3s ease .85s both}
-.lk-wm{z-index:1;left:36.7%;top:.93%;width:63.3%;height:49.77%;animation:wmIn 1.3s cubic-bezier(.45,.05,.2,1) 1.35s both,wmOut .6s cubic-bezier(.6,0,.3,1) 3s forwards}
-.lk-tag{z-index:1;left:31.91%;top:53.02%;width:68.09%;height:45.12%;animation:tagIn .9s ease-out 2s both,tagOut .35s ease-in 3s forwards}
+.lk-wm{z-index:1;left:36.7%;top:.93%;width:63.3%;height:49.77%;animation:wmIn 1.3s cubic-bezier(.45,.05,.2,1) 1.35s both}
+.lk-tag{z-index:1;left:31.91%;top:53.02%;width:68.09%;height:45.12%;animation:tagIn .9s ease-out 2s both}
 @keyframes icSlide{from{left:36.28%}to{left:1.064%}}
-@keyframes icBack{from{left:1.064%}to{left:36.28%}}
-@keyframes wmOut{from{clip-path:inset(0 0 0 0);transform:none}to{clip-path:inset(0 100% 0 0);transform:translateX(-6%)}}
-@keyframes tagOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(12px)}}
 @keyframes icIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
 @keyframes spin{0%{transform:rotate(-1440deg)}72%{transform:rotate(-216deg);animation-timing-function:cubic-bezier(.2,.8,.3,1)}100%{transform:rotate(0)}}
 @keyframes arc2{from{opacity:.4}to{opacity:0}}
@@ -436,17 +428,16 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 @keyframes wmIn{from{clip-path:inset(0 100% 0 0);transform:translateX(-6%)}to{clip-path:inset(0 0 0 0);transform:none}}
 @keyframes tagIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 /* NAV LOGO-REVEAL TRANSITION */
-#intro.re{--r:160vmax;animation:none;cursor:default;pointer-events:none}
-#intro.re .lk{animation:none}
-#intro.re.in{animation:reClose .5s cubic-bezier(.5,0,.2,1) forwards;pointer-events:auto}
-#intro.re.out{animation:reOpen 1.4s cubic-bezier(.4,0,.3,1) forwards}
-@keyframes reClose{from{--r:160vmax}to{--r:-8px}}
-@keyframes reOpen{0%{--r:-8px}99%{--r:90vmax;visibility:visible}100%{--r:90vmax;visibility:hidden}}
+#intro.re{animation:none;cursor:default;transform:translateY(-110%)}
+#intro.re.in{animation:reDown .5s cubic-bezier(.7,0,.2,1) forwards}
+#intro.re.out{animation:reUp .8s var(--spring) forwards;transform:none}
+@keyframes reDown{from{transform:translateY(-110%)}to{transform:none}}
+@keyframes reUp{from{transform:none}to{transform:translateY(-110%);visibility:hidden}}
 #intro.re .ic{animation:none;left:36.28%}
-#intro.re .ic-base{animation:icIn .35s var(--spring) .4s both}
-#intro.re .ic-bolt{animation:bolt .6s linear .4s both}
-#intro.re .spin{animation:spin .6s linear .4s both}
-#intro.re .spin2{animation:spin .6s linear .4s both,arc2 .2s ease .75s both}
+#intro.re .ic-base{animation:icIn .35s var(--spring) .3s both}
+#intro.re .ic-bolt{animation:bolt .7s linear .35s both}
+#intro.re .spin{animation:spin .65s linear .35s both}
+#intro.re .spin2{animation:spin .65s linear .35s both,arc2 .2s ease .75s both}
 #intro.re .lk-wm,#intro.re .lk-tag{display:none}
 /* REVEAL */
 .rv{opacity:.25;transform:translate(34px,34px);transition:transform .9s var(--spring),opacity .7s}
@@ -1020,9 +1011,6 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     else{
       intro.addEventListener('animationend',function(e){if(e.animationName==='introOut'||e.animationName==='introSkip')intro.remove()});
       intro.addEventListener('click',function(){intro.classList.add('skip')});
-      var aimLens=function(){var lk=intro.querySelector('.lk');if(!lk)return;var b=lk.getBoundingClientRect();
-        intro.style.setProperty('--cx',(b.left+b.width*.5)+'px');intro.style.setProperty('--cy',(b.top+b.height*.3326)+'px')};
-      aimLens();window.addEventListener('resize',aimLens);
     }
   }
 
@@ -1240,7 +1228,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     function playHero(){if(heroOn)return;heroOn=true;heroTl.play()}
     if(intro&&document.body.contains(intro)){
       /* starts the moment the logo screen begins to lift (or is skipped) */
-      intro.addEventListener('animationstart',function(e){if(e.animationName==='introOut')setTimeout(playHero,650);else if(e.animationName==='introSkip')playHero()});
+      intro.addEventListener('animationstart',function(e){if(e.animationName==='introOut'||e.animationName==='introSkip')playHero()});
       setTimeout(playHero,6000);
     }else playHero();
   }
@@ -1261,15 +1249,12 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
     }
     /* menu tap: replay the logo reveal, jump while it covers the page, then lift */
     var cv=introTpl.cloneNode(true); cv.className='re'; cv.setAttribute('aria-hidden','true');
-    document.body.appendChild(cv);
-    (function(){var lk=cv.querySelector('.lk');if(!lk)return;var b=lk.getBoundingClientRect();
-      cv.style.setProperty('--cx',(b.left+b.width*.5)+'px');cv.style.setProperty('--cy',(b.top+b.height*.3326)+'px')})();
-    void cv.offsetWidth; cv.classList.add('in');
+    document.body.appendChild(cv); void cv.offsetWidth; cv.classList.add('in');
     setTimeout(function(){
       var y=Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-10);
       if(lenis) lenis.scrollTo(y,{immediate:true,force:true}); else window.scrollTo({top:y,behavior:'instant'});
-    },560);
-    setTimeout(function(){cv.className='re out';cv.addEventListener('animationend',function(e){if(e.target===cv)cv.remove()})},1250);
+    },720);
+    setTimeout(function(){cv.className='re out';cv.addEventListener('animationend',function(){cv.remove()})},1500);
   })});
 
   /* count-up: the How it works figures run from 0 up to their value when they scroll into view */
